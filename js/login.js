@@ -7,15 +7,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 
 
-
 function validacion() {
     
     let usuario = document.getElementById("correo").value;
     let contrasena = document.getElementById("contrasena").value;
 
     if (usuario !== "" && contrasena !== "") {
-        window.location.assign("index.html");
-       // windows.location = "index.html";
+        window.location.assign("inicio.html");
     }
     else {
         document.getElementById("datos-error").innerHTML = "debe ingresar sus datos";
