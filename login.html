@@ -13,34 +13,27 @@
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <style>
-    html, body{
-      height: 100%;
-    }
-
-    body {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-      align-items: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      background-color: #f5f5f5;
-    }
-
-    .signin {
-      width: 100%;
-      max-width: 330px;
-      padding: 15px;
-      margin: auto;
-    }
-  </style>
+  <!-- estilos del login -->
+  <link href="css/login.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="text-center">
 
+  <div class="signin">
+    <h1>Login</h1>
+    <div class="datos">
+      <input type="text" id="correo" value="" placeholder="ingresar correo">
+      <input type="password" id="contrasena" value="" placeholder="ingresar clave">
+      <p id="datos-error"></p>
+    </div>
+    <input type="checkbox" id="recordar" name="recordar">
+    <label class="caja" for="recordar">Recordar usuario</label>
+    <button href="#" onclick="validacion()">Ingresar</button>
+    <a class="link-auxiliar" href="#">No recuerdo mi clave</a>
+  </div>
 
   <script src="js/init.js"></script>
   <script src="js/login.js"></script>
 </body>
+
 </html>
