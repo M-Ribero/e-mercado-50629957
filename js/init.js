@@ -60,3 +60,22 @@ if (userLogged) {
 }
 
 });
+
+// MENÚ DE USUARIO DROP (adaptado de (https://www.w3schools.com/howto/howto_js_dropdown.asp))
+function desplegable() {
+  document.getElementById("links-drop").classList.toggle("show");
+}
+
+// Cierra el drop si se hace click afuera
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("links-drop-contenido");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}

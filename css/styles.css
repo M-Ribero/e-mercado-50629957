@@ -140,49 +140,46 @@ a.custom-card:hover {
   color: orange;
 }
 
+
+
 /* ESTILO PERSONAL */
 
-/* Dropdown Button */
+/* MENÚ DE USUARIO DROP */
 .dropbtn {
-  background-color: #3498DB;
+  background-color: #007bff;
   color: white;
   padding: 16px;
-  font-size: 16px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
-/* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
+  background-color: blue;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
+#info-user {
   position: relative;
-  display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+.links-drop-contenido {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  width: 100%;
+  min-width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
+.links-drop-contenido a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd}
+.links-drop-contenido a:hover {background-color: #ddd}
 
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+/* clase que se agrega para mostrar el menú mediante función desplegable() en init.js */
 .show {display:block;}
