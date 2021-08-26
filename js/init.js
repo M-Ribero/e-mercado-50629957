@@ -59,5 +59,4 @@ if (userLogged) {
   user.innerText = userLogged.email; 
 }
 
-//usuario.innerHTML += userLogged.usuario;
 });
