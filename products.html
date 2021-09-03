@@ -34,8 +34,6 @@
     </nav>
 
     <!-- FILTROS -->
-
-
     <div class="container">
       <div class="row">
           <div class="col text-right">
@@ -47,7 +45,7 @@
                       <input type="radio" name="options" autocomplete="off">Descendente
                   </label>
                   <label class="btn btn-light" id="sortByCount" >
-                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Cant.
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Más vendidos
                   </label>
               </div>
           </div>
@@ -60,14 +58,14 @@
                 <p class="font-weight-normal text-right my-2">Precio</p>
               </div>
               <div class="col">
-                <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+                <input class="form-control" type="number" placeholder="min." id="rangeFilterCostMin" style="width: 150px;">
               </div>
               <div class="col">
-                <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+                <input class="form-control" type="number" placeholder="máx." id="rangeFilterCostMax" style="width: 150px;">
               </div>
               <div class="col-3 p-0">
                 <div class="btn-group" role="group">
-                  <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+                  <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
                   <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
                 </div>
               </div>
@@ -75,18 +73,11 @@
           </div>
       </div>
       <div class="row">
+        <!-- DIV DONDE SE MUESTRA EL CONTENIDO -->
           <div class="list-group" id="cat-list-container">
           </div>
       </div>
   </div>
-
-
-
-
-
-<!-- DIV DONDE SE MUESTRA EL CONTENIDO -->
-    <div class="list-group" id="cat-list-container">
-    </div>
 
     <footer class="text-muted bg-light">
       <div class="container">
