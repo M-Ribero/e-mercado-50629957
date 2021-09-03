@@ -1,4 +1,5 @@
 var productsArray = [];
+var productsOrdenado = [];
 
 function showProductsList(array) {
     let htmlContentToAppend = "";
@@ -16,7 +17,8 @@ function showProductsList(array) {
                         <div class="mb-1">
                         <h4>`+ product.name + `</h4> 
                         <p> `+ product.description + `</p>
-                        <p> `+ product.cost + ' ' + product.currency + `</p>  
+                        <p> `+ product.cost + ' ' + product.currency + `</p> 
+                        <small class="text-muted">` + product.soldCount + ` artículos vendidos</small> 
                         </div>
                     </div>
 
@@ -26,17 +28,90 @@ function showProductsList(array) {
         `
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
-// mostrar cantidad de vendidos <small class="text-muted">` + product.soldCount + ` artículos vendidos</small> 
+
 }
 
-    document.addEventListener("DOMContentLoaded", function (e) {
+// ordenar por precio
 
-        getJSONData(PRODUCTS_URL).then(function (resultObj) {
-            if (resultObj.status === "ok") {
-                productsArray = resultObj.data;
-                showProductsList(productsArray);
-            }
-        });
+
+
+function ord1(criterio) {
+    productsOrdenado = productsArray;
+    productsOrdenado = ordenar(criterio);
+}
+
+function ordenar(criterio) {
+    return result = [];
+    switch (criterio) {
+
+        case "ascendente":
+            result = productsOrdenado.sort(
+                function (a, b) {
+                    let a = parseInt(a.cost);
+                    let b = parseInt(b.cost);
+                    if (a > b) {
+                        return 1;
+                    }
+                    if (a < b) {
+                        return -1;
+                    }
+                    return 0;
+                }); break;
+
+
+        case "descendente":
+            result = productsOrdenado.sort(
+                function (a, b) {
+                    let a = parseInt(a.cost);
+                    let b = parseInt(b.cost);
+                    if (a < b) {
+                        return 1;
+                    }
+                    if (a > b) {
+                        return -1;
+                    }
+                    return 0;
+                }); break;
+
+
+        case "relevancia":
+            result = productsOrdenado.sort(
+                function (a, b) {
+                    let a = parseInt(a.soldCount);
+                    let b = parseInt(b.soldCount);
+                    if (a > b) {
+                        return 1;
+                    }
+                    if (a < b) {
+                        return -1;
+                    }
+                    return 0;
+                }); break;
+
+    }
+    return result;
+}
+
+document.addEventListener("DOMContentLoaded", function (e) {
+
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            productsArray = resultObj.data;
+            showProductsList(productsArray);
+        }
+    });
+
+    document.getElementById("sortAsc").addEventListener("click", function() {
+        ord1("ascendente");
+    });
+
+    document.getElementById("sortDesc").addEventListener("click", function(){
+        ord1("descendente");
+    });
+
+    document.getElementById("sortByCount").addEventListener("click", function(){
+        ord1("relevancia");
+    });
 
 });
 
