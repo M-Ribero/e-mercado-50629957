@@ -37,22 +37,22 @@ function showProductsList(array) {
 
 function ord1(criterio) {
     productsOrdenado = productsArray;
-    productsOrdenado = ordenar(criterio);
+    showProductsList(ordenar(criterio));
 }
 
 function ordenar(criterio) {
-    return result = [];
+    var result = [];
     switch (criterio) {
 
         case "ascendente":
             result = productsOrdenado.sort(
                 function (a, b) {
-                    let a = parseInt(a.cost);
-                    let b = parseInt(b.cost);
-                    if (a > b) {
+                    let aASC = parseInt(a.cost);
+                    let bASC = parseInt(b.cost);
+                    if (aASC > bASC) {
                         return 1;
                     }
-                    if (a < b) {
+                    if (aASC < bASC) {
                         return -1;
                     }
                     return 0;
@@ -62,12 +62,12 @@ function ordenar(criterio) {
         case "descendente":
             result = productsOrdenado.sort(
                 function (a, b) {
-                    let a = parseInt(a.cost);
-                    let b = parseInt(b.cost);
-                    if (a < b) {
+                    let aDES = parseInt(a.cost);
+                    let bDES = parseInt(b.cost);
+                    if (aDES < bDES) {
                         return 1;
                     }
-                    if (a > b) {
+                    if (aDES > bDES) {
                         return -1;
                     }
                     return 0;
@@ -77,12 +77,12 @@ function ordenar(criterio) {
         case "relevancia":
             result = productsOrdenado.sort(
                 function (a, b) {
-                    let a = parseInt(a.soldCount);
-                    let b = parseInt(b.soldCount);
-                    if (a > b) {
+                    let aREL = parseInt(a.soldCount);
+                    let bREL = parseInt(b.soldCount);
+                    if (aREL < bREL) {
                         return 1;
                     }
-                    if (a < b) {
+                    if (aREL > bREL) {
                         return -1;
                     }
                     return 0;
