@@ -95,11 +95,27 @@ productsArray.forEach(cost) => {
 };
 */
 
+// MOSTRAR SEGÚN INPUT DE BUSQUEDA
+/*var buscar;
+
+function searchProductsList(productsArray){
+    let contenido = "";
+
+    for (let i = 0; i < productsArray.length; i++) {
+        let product = productsArray[i];
+
+        if (product.name.toLowerCase().includes(buscar) || product.description.toLowerCase().includes(buscar)) {
+            contenido += ;
+        } if (buscar == "") {
+            contenido = "";
+        }
+    }
+    document.getElementById("cat-list-container").innerHTML = contenido;
+}
+*/
 
 
 
-
-// MOSTRAR SEGÚN PRECIO
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
@@ -112,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 
 
-    // FUNCIONALIDAD DE LOS BOTONES DE FILTRO
+    // FUNCIONALIDAD DE LOS FILTROS
 
     // MUESTRA EN FUNCIÓN DE CASO ASCENDENTE
     document.getElementById("sortAsc").addEventListener("click", function () {
@@ -129,8 +145,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         ShowProductsByCriteria("relevancia");
     });
 
-
-    // MUESTRA SEGÚN LOS FILTROS DE PRECIO
+    // MUESTRA SEGÚN PRECIOS
     document.getElementById("rangeFilterCost").addEventListener("click", function () {
         minCost = document.getElementById("rangeFilterCostMin").value;
         maxCost = document.getElementById("rangeFilterCostMax").value;
@@ -151,6 +166,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
         showProductsList(productsArray);
     });
+
+    // // MUESTRA SEGÚN LA BUSQUEDA
+    // document.getElementById("buscar").addEventListener('input', function () {
+    //     buscar = document.getElementById("buscar").value.toLowerCase();
+    //     searchProductsList(productsArray)
+    // });
 
 
     // VUELVE A CARGAR LA LISTA EN SU ESTADO ORIGINAL SIN FILTROS
