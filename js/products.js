@@ -2,6 +2,7 @@ var productsArray = [];
 var productsOrdenado = [];
 var minCost = undefined;
 var maxCost = undefined;
+var buscar;
 
 function showProductsList(array) {
     let htmlContentToAppend = "";
@@ -86,7 +87,7 @@ function filtrar(criterio) {
 
 /* intento con filter y forEach
  function filtrados(elemento) {
-     return elemento >= 10;
+     return elemento >= ;
   }
    var resultado = .filter(filtrados);
 
@@ -96,23 +97,41 @@ productsArray.forEach(cost) => {
 */
 
 // MOSTRAR SEGÚN INPUT DE BUSQUEDA
-/*var buscar;
 
-function searchProductsList(productsArray){
+function searchProductsList(productsArray) {
     let contenido = "";
 
     for (let i = 0; i < productsArray.length; i++) {
         let product = productsArray[i];
 
         if (product.name.toLowerCase().includes(buscar) || product.description.toLowerCase().includes(buscar)) {
-            contenido += ;
+            contenido +=  `
+            <div class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <div class="mb-1">
+                            <h4>`+ product.name + `</h4> 
+                            <p> `+ product.description + `</p>
+                            <p> `+ product.cost + ' ' + product.currency + `</p> 
+                            <small class="text-muted">` + product.soldCount + ` artículos vendidos</small> 
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+            `
         } if (buscar == "") {
-            contenido = "";
+            showProductsList(productsArray);
         }
     }
     document.getElementById("cat-list-container").innerHTML = contenido;
 }
-*/
+
 
 
 
@@ -167,11 +186,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
         showProductsList(productsArray);
     });
 
-    // // MUESTRA SEGÚN LA BUSQUEDA
-    // document.getElementById("buscar").addEventListener('input', function () {
-    //     buscar = document.getElementById("buscar").value.toLowerCase();
-    //     searchProductsList(productsArray)
-    // });
+    // MUESTRA SEGÚN LA BUSQUEDA
+    document.getElementById("buscar").addEventListener('input', function () {
+        buscar = document.getElementById("buscar").value.toLowerCase();
+        searchProductsList(productsArray)
+    });
+
+
 
 
     // VUELVE A CARGAR LA LISTA EN SU ESTADO ORIGINAL SIN FILTROS
