@@ -4,6 +4,8 @@ var minCost = undefined;
 var maxCost = undefined;
 var buscar;
 
+// FUNCIÓN PARA MOSTRAR LOS PRODUCTOS
+
 function showProductsList(array) {
     let htmlContentToAppend = "";
 

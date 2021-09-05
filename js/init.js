@@ -47,9 +47,9 @@ var getJSONData = function(url){
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
-let userLogged = localStorage.getItem('User-Logged')
+// DATOS DE USUARIO
 
-let infoUser = document.getElementById("info-user");
+let userLogged = localStorage.getItem('User-Logged')
 
 let user = document.getElementById("user");
 
@@ -61,7 +61,9 @@ if (userLogged) {
 
 });
 
+
 // MENÚ DE USUARIO DROP (adaptado de (https://www.w3schools.com/howto/howto_js_dropdown.asp))
+
 function desplegable() {
   document.getElementById("links-drop").classList.toggle("show");
 }
