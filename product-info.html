@@ -13,6 +13,10 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <!-- LINK A LAS ESTRELLAS DE PUNTIACIÓN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- ESTILOS PERSONALES -->
+  <link href="css/info-product.css" rel="stylesheet">
 </head>
 
 <body>
@@ -25,36 +29,49 @@
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
 
       <!-- USUARIO -->
-     <div id="info-user">
-      <button onclick="desplegable()" id="user" class="dropbtn py-2 d-none d-md-inline-block"></button>
-      <div id="links-drop" class="links-drop-contenido">
-        <a href="my-profile.html">Mi perfil</a>
-        <a href="index.html">Salir</a>
+      <div id="info-user">
+        <button onclick="desplegable()" id="user" class="dropbtn py-2 d-none d-md-inline-block"></button>
+        <div id="links-drop" class="links-drop-contenido">
+          <a href="my-profile.html">Mi perfil</a>
+          <a href="index.html">Salir</a>
+        </div>
       </div>
-    </div>
 
   </nav>
- 
-      <!-- DIV DONDE SE MUESTRA EL CONTENIDO -->
-      <div class="list-group" id="cat-list-container">
-      </div>
 
+  <!-- DIV DONDE SE MUESTRA EL CONTENIDO -->
+  <div class="list-group" id="cat-list-container">
+  </div>
 
-      <div class="list-group">
-      <div class="list-group-item list-group-item-action">
-        <div class="row">
-            <div class="col">
-                <div class="d-flex w-100 justify-content-between">
-                    <div class="mb-1" id="caja-comentarios">
-                   
-                    </div>
-                </div>
+  <!-- div de comentarios -->
+  <div class="list-group">
+    <div class="list-group-item list-group-item-action">
+      <div class="row">
+        <div class="col">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="mb-1" id="caja-comentarios">
 
             </div>
-        </div>
-    </div>
+          </div>
 
+        </div>
       </div>
+    </div>
+  </div>
+
+  <!-- div para crear comentario -->
+  <div class="form-floating">
+    <label for="floatingTextarea">Escribe un comentario</label>
+    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+      style="height: 200px"></textarea>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <button class="btn btn-primary" id="publicar-comentario">Enviar</button>
+  </div>
+
 
 
 

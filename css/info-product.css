@@ -1,0 +1,7 @@
+.checked {
+    color: black;
+  }
+
+.checked:hover {
+    color: orange;
+  }

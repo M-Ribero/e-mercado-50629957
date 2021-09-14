@@ -18,7 +18,7 @@ function showProductInfo(array) {
         let imgs = product.images[i];
 
         contenido += `
-        <img src="` + imgs + `" alt=" " class="img-thumbnail">
+        <img src="` + imgs + `" alt=" " class="img-thumbnail" style="height: 200px">
         `
     }
     contenido += `
@@ -57,14 +57,26 @@ contenido += `
 <p>${comentario.description}</p>
 <p>${comentario.user}</p>
 <p>${comentario.dateTime}</p>
-
 `
     }
     document.getElementById("caja-comentarios").innerHTML = contenido;
     
 }
 
+// comentario nuevo que se muestre
+/*
+document.getElementById("publicar-comentario").addEventListener("click", function() {
+    let  nuevoComentario = {
+        user: JSON.parse(localStorage.getItem('User-Logged')).email
+        description: document.getElementById("floatingTextarea").value
+        score:
+        dateTime:
+    };
 
+    comments.push("nuevoComentario");
+    showComments(comments);
+    document.getElementById("floatingTextarea").innerHTML = "";
+}) */
 
 
 
@@ -80,7 +92,7 @@ contenido += `
 document.addEventListener("DOMContentLoaded", function (e) {
 
 
-
+// CARGA LA INFORMACIÓN DEL PRODUCTO
     getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             productInfo = resultObj.data;
@@ -88,6 +100,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
+
+// CARGA LOS COMENTARIOS
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             comments = resultObj.data;
