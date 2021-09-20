@@ -1,12 +1,16 @@
 var productInfo = []
 var comments = []
+var rating = 1;
+// variables de tiempo
+var today = new Date();
+var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date + ' ' + time;
 
 
 function showProductInfo(array) {
     let contenido = "";
     let product = array;
-
-
 
     contenido += `
     <div class="list-group-item list-group-item-action">
@@ -38,61 +42,50 @@ function showProductInfo(array) {
 </div>
 `
     document.getElementById("cat-list-container").innerHTML = contenido;
-
-
 }
 
 // AGREGAR PRODUCTOS RELACIONADOS AL JSON
-// <p>${product.category}</p>
 
 function showComments(array) {
     let contenido = "";
     let comentarios = array;
+    let estrellas = `<span class="fa fa-star checked" style="margin: 2px;"></span>`;
 
-
-    for(comentario of comentarios) {
-
-contenido += `
-<p>${comentario.score}</p>
-<p>${comentario.description}</p>
-<p>${comentario.user}</p>
-<p>${comentario.dateTime}</p>
-`
+    for (comentario of comentarios) {
+        contenido += `
+        <p>${comentario.user}</p>
+        <p>${estrellas.repeat(comentario.score)}</p>
+        <p>${comentario.description}</p>
+        <p>${comentario.dateTime}</p>
+                     `
     }
     document.getElementById("caja-comentarios").innerHTML = contenido;
-    
 }
 
-// comentario nuevo que se muestre
-/*
-document.getElementById("publicar-comentario").addEventListener("click", function() {
-    let  nuevoComentario = {
-        user: JSON.parse(localStorage.getItem('User-Logged')).email
-        description: document.getElementById("floatingTextarea").value
-        score:
-        dateTime:
+// NUEVO COMENTARIO
+document.getElementById("publicar-comentario").addEventListener("click", function () {
+    let nuevoComentario = {
+        user: JSON.parse(localStorage.getItem('User-Logged')).email,
+        description: document.getElementById("floatingTextarea").value,
+        score: rating,
+        dateTime: dateTime
     };
 
-    comments.push("nuevoComentario");
+    comments.push(nuevoComentario);
     showComments(comments);
     document.getElementById("floatingTextarea").innerHTML = "";
-}) */
+});
+
+// FUNCIÓN PARA TOMAR EL VALOR DE ESTRELLAS
+function getRating (valor) {
+    rating = valor;
+}
 
 
 
-
-
-
-
-
-
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
 
-
-// CARGA LA INFORMACIÓN DEL PRODUCTO
+    // CARGA LA INFORMACIÓN DEL PRODUCTO
     getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             productInfo = resultObj.data;
@@ -100,8 +93,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
-
-// CARGA LOS COMENTARIOS
+    // CARGA LOS COMENTARIOS
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             comments = resultObj.data;
