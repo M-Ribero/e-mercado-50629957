@@ -1,4 +1,6 @@
 var productInfo = []
+var products = []
+var productsRelated = [1, 3]
 var comments = []
 var rating = 1;
 // variables de tiempo
@@ -44,6 +46,15 @@ function showProductInfo(array) {
     document.getElementById("cat-list-container").innerHTML = contenido;
 }
 
+function showRelatedProducts(array) {
+    let productos = array;
+
+    for (let i = 0; i < productsRelated.length; i++) {
+        document.getElementById("productos-relacionados").innerHTML += productos[productsRelated[i]];
+    }
+      
+}
+
 // AGREGAR PRODUCTOS RELACIONADOS AL JSON
 
 function showComments(array) {
@@ -77,7 +88,7 @@ document.getElementById("publicar-comentario").addEventListener("click", functio
 });
 
 // FUNCIÓN PARA TOMAR EL VALOR DE ESTRELLAS
-function getRating (valor) {
+function getRating(valor) {
     rating = valor;
 }
 
@@ -98,6 +109,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status === "ok") {
             comments = resultObj.data;
             showComments(comments);
+        }
+    });
+
+    // CARGA LOS PRODUCTOS
+    getJSONData(PRODUCTS_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            products = resultObj.data;
+            showRelatedProducts(products);
         }
     });
 
