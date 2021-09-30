@@ -1,6 +1,6 @@
 var productInfo = []
 var products = []
-var productsRelated = [1, 3]
+var productosRelacionados = []
 var comments = []
 var rating = 1;
 // variables de tiempo
@@ -24,6 +24,7 @@ function showProductInfo(array) {
         let imgs = product.images[i];
 
         contenido += `
+        
         <img src="` + imgs + `" alt=" " class="img-thumbnail" style="height: 200px">
         `
     }
@@ -47,12 +48,27 @@ function showProductInfo(array) {
 }
 
 function showRelatedProducts(array1, array2) {
-    let contenido = []
+    contenido = "";
 
-    for (let i = 0; i < array2.length; i++) {
-        document.getElementById("productos-relacionados").innerHTML += array1[array2[i]];
+    for (let indice of array2) {
+        contenido += `
+        
+
+        <div class="col text-center">
+        <div class="mb-1">
+        <h4>`+ array1[indice].name + `</h4>
+        <a href="product-info.html">
+        <img src="`+ array1[indice].imgSrc + `" alt=" " class="img-thumbnail" style="height: 200px"></a>
+        <p> `+ array1[indice].cost + ' ' + array1[indice].currency + `</p>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        </div>
+        `
     }
-      
+    document.getElementById("productos-relacionados").innerHTML = contenido;
 }
 
 // AGREGAR PRODUCTOS RELACIONADOS AL JSON
@@ -101,6 +117,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status === "ok") {
             productInfo = resultObj.data;
             showProductInfo(productInfo);
+            productosRelacionados = productInfo.relatedProducts;
         }
     });
 
@@ -112,11 +129,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
-    // CARGA LOS PRODUCTOS
+    // CARGA LOS PRODUCTOS RELACIONADOS
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             products = resultObj.data;
-            showRelatedProducts(products, productsRelated);
+            showRelatedProducts(products, productosRelacionados);
         }
     });
 
