@@ -46,11 +46,11 @@ function showProductInfo(array) {
     document.getElementById("cat-list-container").innerHTML = contenido;
 }
 
-function showRelatedProducts(array) {
-    let productos = array;
+function showRelatedProducts(array1, array2) {
+    let contenido = []
 
-    for (let i = 0; i < productsRelated.length; i++) {
-        document.getElementById("productos-relacionados").innerHTML += productos[productsRelated[i]];
+    for (let i = 0; i < array2.length; i++) {
+        document.getElementById("productos-relacionados").innerHTML += array1[array2[i]];
     }
       
 }
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCTS_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
             products = resultObj.data;
-            showRelatedProducts(products);
+            showRelatedProducts(products, productsRelated);
         }
     });
 
