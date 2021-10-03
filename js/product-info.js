@@ -47,6 +47,8 @@ function showProductInfo(array) {
     document.getElementById("cat-list-container").innerHTML = contenido;
 }
 
+// AGREGAR PRODUCTOS RELACIONADOS AL JSON
+
 function showRelatedProducts(array1, array2) {
     contenido = "";
 
@@ -71,7 +73,7 @@ function showRelatedProducts(array1, array2) {
     document.getElementById("productos-relacionados").innerHTML = contenido;
 }
 
-// AGREGAR PRODUCTOS RELACIONADOS AL JSON
+// AGREGAR NUEVO COMENTARIO
 
 function showComments(array) {
     let contenido = "";
