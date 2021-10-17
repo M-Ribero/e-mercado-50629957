@@ -5,51 +5,75 @@ const CARRITO_ALT = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
 
 function showArticles(array) {
     contenido = "";
+
     for (let i = 0; i < array.length; i++) {
+        let articulo = array[i];
+
+        let sub = articulo.unitCost * articulo.count;
+        if (articulo.currency == "USD") {
+            sub = sub * 40;
+        }
+
         contenido += `
-            <div class="col">
+            <div class="col col-md-4 mt-3">
             <div class="mb-1">
-            <h4>`+ array[i].name + `</h4>
-            <img src="`+ array[i].imgSrc + `" alt=" " class="img-thumbnail" style="height: 200px"></img>
-            <p> `+ array[i].unitCost + ' ' + array[i].currency + `</p>
-            <input style="width:50px;" id="cantidad${i}" type="number" value="`+ array[i].count + `" min="1" class="cantidadProducto"> 
+            <h4>`+ articulo.name + `</h4>
+            <img src="`+ articulo.src + `" alt=" " class="img-thumbnail" style="height: 200px"></img>
+            <p id="precio${i}">` + articulo.unitCost + `</p>
+            <p id="moneda${i}">` + articulo.currency + `</p>
+            <input style="width:50px;" onchange="calculoSubtotal(${i})" id="cantidad${i}" type="number" value="` + articulo.count + `" min="1" class="cantidadProducto">
+            <p id="subtotalArticulo${i}">${sub}</p> 
             </div>
             </div>
         `
     }
     document.getElementById("carrito").innerHTML = contenido;
-
-}
-/*
-function calculoTotal() {
-    let total = 0;
-    let subTotal = document.getElementById("costoProductos");
+    convertir("UYU", array.length);
+    calculoArticulos(array);
 }
 
 
-function calculoSubtotal() {
-    document.getElementById("costoProductos").innerHTML = "jaj";
-}*/
-
-function (){
-    console.log(document.getElementById(`cantidad${i}`).value);
+function calculoSubtotal(i) {
+    subtotal = 0;
+    subtotal += document.getElementById(`precio${i}`).innerHTML * document.getElementById(`cantidad${i}`).value;
+    document.getElementById(`subtotalArticulo${i}`).innerHTML = subtotal;
+    calculoArticulos(articulosCargados);
 }
 
 
+function calculoArticulos(articulos) {
+    document.getElementById("costoProductos").innerHTML = 0;
+    total = 0;
+    for (let i = 0; i < articulos.length; i++) {
+        total += document.getElementById(`precio${i}`).innerHTML * document.getElementById(`cantidad${i}`).value;
+    }
+    document.getElementById("costoProductos").innerHTML = total;
+    // costo total temporal sin calcular envío
+    document.getElementById("costoTotal").innerHTML = document.getElementById("costoProductos").innerHTML;
+}
 
 
-
-
+// CONVIERTE USD EN UYU O UYU EN USD
+function convertir(tipoDeCambio, cantidadArticulos) {
+    for (let i = 0; i < cantidadArticulos; i++) {
+        if (tipoDeCambio == "UYU" && document.getElementById(`moneda${i}`).innerHTML == "USD") {
+            document.getElementById(`precio${i}`).innerHTML = document.getElementById(`precio${i}`).innerHTML * 40;
+            document.getElementById(`moneda${i}`).innerHTML = "UYU";
+        }
+        if (tipoDeCambio == "USD" && document.getElementById(`moneda${i}`).innerHTML == "UYU") {
+            document.getElementById(`precio${i}`).innerHTML = document.getElementById(`precio${i}`).innerHTML / 40;
+            document.getElementById(`moneda${i}`).innerHTML = "USD";
+        }
+        calculoSubtotal(i);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(CART_INFO_URL).then(function (resultObj) {
+    getJSONData(CARRITO_ALT).then(function (resultObj) {
         if (resultObj.status === "ok") {
             articulos = resultObj.data;
             articulosCargados = articulos.articles;
             showArticles(articulosCargados);
         }
     });
-
-
-    // usar un evento change
 });
