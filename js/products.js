@@ -7,7 +7,7 @@ var buscar;
 // FUNCIÓN PARA MOSTRAR LOS PRODUCTOS
 
 function showProductsList(array) {
-    let htmlContentToAppend = "";
+    let contenido = "";
 
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
@@ -15,28 +15,21 @@ function showProductsList(array) {
         if (((minCost == undefined) || (minCost != undefined && parseInt(product.cost) >= minCost)) &&
             ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))) {
 
-            htmlContentToAppend += `
-        <a href="product-info.html" class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
+            contenido += `
+            <div class="col col-sm-6 col-lg-4 mb-3"> 
+                <a href="product-info.html" class="list-group-item list-group-item-action">
                     <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <div class="mb-1">
+                        <div class="m-3">
                         <h4>`+ product.name + `</h4> 
                         <p> `+ product.description + `</p>
                         <p> `+ product.cost + ' ' + product.currency + `</p> 
                         <small class="text-muted">` + product.soldCount + ` artículos vendidos</small> 
                         </div>
-                    </div>
-
-                </div>
+                </a>
             </div>
-        </a>
-        `
+            `
         }
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+        document.getElementById("cat-list-container").innerHTML = contenido;
     }
 
 }
@@ -86,18 +79,6 @@ function filtrar(criterio) {
     return result;
 }
 
-
-/* intento con filter y forEach
- function filtrados(elemento) {
-     return elemento >= ;
-  }
-   var resultado = .filter(filtrados);
-
-productsArray.forEach(cost) => {  
-  });
-};
-*/
-
 // MOSTRAR SEGÚN INPUT DE BUSQUEDA
 
 function searchProductsList(productsArray) {
@@ -108,24 +89,17 @@ function searchProductsList(productsArray) {
 
         if (product.name.toLowerCase().includes(buscar) || product.description.toLowerCase().includes(buscar)) {
             contenido +=  `
-            <div class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+            <div class="col col-sm-6 col-lg-4 mb-3"> 
+            <a href="product-info.html" class="list-group-item list-group-item-action">
+                <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+                    <div class="m-3">
+                    <h4>`+ product.name + `</h4> 
+                    <p> `+ product.description + `</p>
+                    <p> `+ product.cost + ' ' + product.currency + `</p> 
+                    <small class="text-muted">` + product.soldCount + ` artículos vendidos</small> 
                     </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <div class="mb-1">
-                            <h4>`+ product.name + `</h4> 
-                            <p> `+ product.description + `</p>
-                            <p> `+ product.cost + ' ' + product.currency + `</p> 
-                            <small class="text-muted">` + product.soldCount + ` artículos vendidos</small> 
-                            </div>
-                        </div>
-    
-                    </div>
-                </div>
-            </div>
+            </a>
+        </div>
             `
         } if (buscar == "") {
             showProductsList(productsArray);
