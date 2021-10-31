@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 // DATOS DE USUARIO
 
-let userLogged = localStorage.getItem('User-Logged')
+let userLogged = localStorage.getItem('User-Logged');
 
 let user = document.getElementById("user");
 
