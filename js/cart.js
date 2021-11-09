@@ -68,6 +68,12 @@ function convertir(tipoDeCambio, cantidadArticulos) {
     }
 }
 
+
+// VALIDACIONES
+
+
+
+
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(CARRITO_ALT).then(function (resultObj) {
         if (resultObj.status === "ok") {
